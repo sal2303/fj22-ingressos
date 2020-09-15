@@ -18,8 +18,17 @@ public class SessaoForm {
 	private Integer salaId;
 
 	@DateTimeFormat(pattern = "HH:mm")
+	
 	@NotNull
 	private LocalTime horario;
+
+	public LocalTime getHorario() {
+		return horario;
+	}
+
+	public void setHorario(LocalTime horario) {
+		this.horario = horario;
+	}
 
 	@NotNull
 	private Integer filmeId;
