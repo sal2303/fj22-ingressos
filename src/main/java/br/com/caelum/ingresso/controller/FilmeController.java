@@ -91,15 +91,23 @@ public class FilmeController {
         return modelAndView;
     }
  
+    @Transactional
     @GetMapping("/filme/{id}/detalhe")
     public ModelAndView detalhes(@PathVariable("id") Integer id){
 
-        ModelAndView modelAndView = new ModelAndView("filme/detalhe");
+        ModelAndView modelAndView = new ModelAndView("/filme/detalhe");
 
         Filme filme = filmeDao.findOne(id);
-        List<Sessao> sessoes = sessaoDao.buscaSessoesDoFilme(filme);
         
-        Optional<DetalhesDoFilme> detalhesDoFilme = client.request(filme);
+        System.out.println(filme.getNome());
+        System.out.println(filme.getId());
+        
+        List<Sessao> sessoes = sessaoDao.buscaSessoesDoFilme(filme);
+  
+        System.out.println(sessoes);
+        
+        
+        Optional<DetalhesDoFilme> detalhesDoFilme = client.request(filme, DetalhesDoFilme.class);
         
         modelAndView.addObject("sessoes", sessoes);
         modelAndView.addObject("detalhes", detalhesDoFilme.orElse(new DetalhesDoFilme()));

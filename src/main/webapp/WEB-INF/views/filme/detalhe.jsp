@@ -56,6 +56,13 @@
 						<th>Ações</th>
 					</thead>
 					<tbody>
+					
+					<div id="debug">
+					
+						${sessoes}
+									
+					</div>
+					
 						<c:forEach items="${sessoes}" var="sessao">
 							<tr>
 								<td>${sessao.sala.nome}</td>
